@@ -1,0 +1,9 @@
+td{
+    padding:10px 0;
+    max-width:100px;
+    word-break: break-all;
+}
+
+.done{
+    text-decoration: line-through;
+}

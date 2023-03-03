@@ -1,0 +1,39 @@
+<h1 class="font-bold text-[30px]">My Todos</h1>
+<div class="w-full flex mt-10">
+    <input type="text" placeholder="Type a new task as label,priority" class="block text-[16px] py-2 px-[14px] rounded-md outline-none border-2 w-[80%]" [(ngModel)] = "label" >
+    <button class="block text-center bg-purple-600 hover:bg-purple-500 text-white w-[20%] text-[16px] rounded-md ml-4 font-bold" (click) = "addNewTask()">add</button>
+</div>
+<div class="mt-10">
+    <table class="w-full">
+        <tr>
+            <th>Label</th>
+            <th>Priority</th>
+            <th>Done</th>
+            <th>Actions</th>
+        </tr>
+        <tr *ngFor="let item of todos; index as i" >
+            <td [class.done]="item.done" >{{ item.label }}</td>
+            <td>{{ item.priority }}</td>
+            <td>
+                <div *ngIf="!item.done; then undone else done" ></div>
+                <ng-template #undone>                    
+                    <button class="text-white bg-[green] font-bold text-[14px] px-6 py-2 rounded-[5px]" (click) = "donef(i,true)">
+                        <i class="fa-solid fa-check"></i>
+                    </button>
+                </ng-template>
+
+                <ng-template #done>
+                    <button class="text-white bg-[red] font-bold text-[14px] px-6 py-2 rounded-[5px]" (click) = "donef(i,false)">
+                        <i class="fa-solid fa-x"></i>
+                    </button>
+                </ng-template>
+
+            </td>
+            <td>
+                <button class="text-white bg-[red] font-bold text-[14px] px-6 py-2 rounded-[5px]" (click)="delete(i)">
+                    <i class="fa-solid fa-trash"></i>
+                </button>
+            </td>
+        </tr>
+    </table>
+</div>
